@@ -26,7 +26,7 @@ public class SmsService {
             return "USER_BLOCKED";
         }
 
-        String status = Math.random() > 0.5 ? "SUCCESS" : "FAIL";
+        String status = "SMS_SENT_SUCCESSFULLY";
 
         Map<String, Object> event = new HashMap<>();
         event.put("userId", req.userId);
