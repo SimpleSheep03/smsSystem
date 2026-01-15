@@ -1,8 +1,8 @@
-package com.example.service;
+package com.example.smssender.service;
 
-import com.example.dto.SmsRequest;
-import com.example.kafka.SmsProducer;
-import com.example.redis.BlockService;
+import com.example.smssender.dto.SmsRequest;
+import com.example.smssender.kafka.SmsProducer;
+import com.example.smssender.redis.BlockService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

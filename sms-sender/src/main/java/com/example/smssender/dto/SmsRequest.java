@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.smssender.dto;
 
 public class SmsRequest {
     public String userId;

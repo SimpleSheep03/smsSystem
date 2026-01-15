@@ -1,7 +1,7 @@
-package com.example.controller;
+package com.example.smssender.controller;
 
-import com.example.dto.SmsRequest;
-import com.example.service.SmsService;
+import com.example.smssender.dto.SmsRequest;
+import com.example.smssender.service.SmsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
