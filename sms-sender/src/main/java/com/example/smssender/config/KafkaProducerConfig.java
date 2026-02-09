@@ -17,13 +17,14 @@ public class KafkaProducerConfig {
 
     @Bean
     public ProducerFactory<String, Object> producerFactory() {
-
         Map<String, Object> config = new HashMap<>();
-
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-
+        config.put(ProducerConfig.REQUEST_TIMEOUT_MS_CONFIG, 10000);
+        config.put(ProducerConfig.DELIVERY_TIMEOUT_MS_CONFIG, 120000);
+        config.put(ProducerConfig.RETRIES_CONFIG, 3);
+        config.put(ProducerConfig.RETRY_BACKOFF_MS_CONFIG, 100);
         return new DefaultKafkaProducerFactory<>(config);
     }
 

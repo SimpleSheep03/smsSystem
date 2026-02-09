@@ -17,7 +17,12 @@ func ConnectMongo() {
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Failed to connect to MongoDB:", err)
+	}
+
+	// Verify connection
+	if err = client.Ping(ctx, nil); err != nil {
+		log.Fatal("Failed to ping MongoDB:", err)
 	}
 
 	Collection = client.Database("sms_db").Collection("messages")

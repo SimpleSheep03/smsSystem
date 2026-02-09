@@ -21,18 +21,12 @@ public class SmsService {
     private SmsProducer producer;
 
     public String sendSms(SmsRequest req) {
-
         if (blockService.isBlocked(req.userId)) {
             return "USER_BLOCKED";
         }
+
         double probability = Math.random();
-        String status;
-        if (probability < 0.5) {
-            status = "FAILED";
-        }  
-        else{
-            status = "SENT";
-        } 
+        String status = (probability < 0.5) ? "FAILED" : "SENT";
 
         Map<String, Object> event = new HashMap<>();
         event.put("userId", req.userId);
