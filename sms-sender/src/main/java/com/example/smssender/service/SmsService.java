@@ -25,8 +25,14 @@ public class SmsService {
         if (blockService.isBlocked(req.userId)) {
             return "USER_BLOCKED";
         }
-
-        String status = "SMS_SENT_SUCCESSFULLY";
+        double probability = Math.random();
+        String status;
+        if (probability < 0.5) {
+            status = "FAILED";
+        }  
+        else{
+            status = "SENT";
+        } 
 
         Map<String, Object> event = new HashMap<>();
         event.put("userId", req.userId);
