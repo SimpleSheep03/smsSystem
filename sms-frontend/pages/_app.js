@@ -5,10 +5,12 @@ import 'react-toastify/dist/ReactToastify.css'
 
 function initTheme(){
   try{
-    const t = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    const t = typeof window !== 'undefined' ? (localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) : 'light';
     if(t==='dark') document.documentElement.classList.add('dark')
     else document.documentElement.classList.remove('dark')
-  }catch(e){}
+  }catch(e){
+    // silent
+  }
 }
 
 export default function App({ Component, pageProps }) {

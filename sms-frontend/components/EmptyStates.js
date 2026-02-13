@@ -24,6 +24,18 @@ export function EmptyBlocked() {
   )
 }
 
+export function EmptyDocuments() {
+  return (
+    <div className="text-center py-12">
+      <div className="flex justify-center mb-4">
+        <MdInsertDriveFile className="text-6xl text-gray-400" />
+      </div>
+      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">No documents found</h3>
+      <p className="text-sm text-gray-500 dark:text-gray-400">This collection is empty</p>
+    </div>
+  )
+}
+
 export function EmptyDatabases() {
   return (
     <div className="text-center py-12">
@@ -44,18 +56,6 @@ export function EmptyCollections() {
       </div>
       <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">No collections found</h3>
       <p className="text-sm text-gray-500 dark:text-gray-400">Select a collection to view documents</p>
-    </div>
-  )
-}
-
-export function EmptyDocuments() {
-  return (
-    <div className="text-center py-12">
-      <div className="flex justify-center mb-4">
-        <MdInsertDriveFile className="text-6xl text-gray-400" />
-      </div>
-      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">No documents found</h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400">This collection is empty</p>
     </div>
   )
 }

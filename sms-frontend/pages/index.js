@@ -4,6 +4,7 @@ import { RiSendPlaneFill } from 'react-icons/ri'
 import { MdOutlineMailOutline, MdBlock } from 'react-icons/md'
 import { GrDatabase } from 'react-icons/gr'
 import { FiPhone, FiMessageSquare, FiAlertCircle, FiDownload } from 'react-icons/fi'
+import { FiMoon } from 'react-icons/fi'
 
 export default function Home(){
   const pages = [
@@ -58,7 +59,7 @@ export default function Home(){
               Export data to CSV from messages and blocked lists
             </li>
             <li className="flex items-center gap-2">
-              <MdBlock className="w-4 h-4 flex-shrink-0" />
+              <FiMoon className="w-4 h-4 flex-shrink-0" />
               Toggle dark mode in the navigation bar
             </li>
           </ul>

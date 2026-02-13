@@ -8,20 +8,17 @@ export default function MessageCard({ msg }){
   const copyToClipboard = () => {
     navigator.clipboard.writeText(msg.phoneNumber)
     setCopied(true)
-    toast.success('Phone number copied!')
     setTimeout(() => setCopied(false), 2000)
   }
   
   const getStatusColor = (status) => {
     if(status === 'SENT') return 'bg-green-50 dark:bg-green-900/20 border-green-500 text-green-700 dark:text-green-400'
-    if(status === 'PENDING') return 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-500 text-yellow-700 dark:text-yellow-400'
     if(status === 'FAILED') return 'bg-red-50 dark:bg-red-900/20 border-red-500 text-red-700 dark:text-red-400'
     return 'bg-gray-50 dark:bg-gray-900/20 border-gray-500 text-gray-700 dark:text-gray-400'
   }
 
   const getStatusIcon = (status) => {
     if(status === 'SENT') return <FiCheckCircle className="w-4 h-4" />
-    if(status === 'PENDING') return <FiAlertCircle className="w-4 h-4" />
     if(status === 'FAILED') return <FiAlertCircle className="w-4 h-4" />
     return <FiCheck className="w-4 h-4" />
   }

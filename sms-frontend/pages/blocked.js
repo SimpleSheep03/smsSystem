@@ -5,7 +5,6 @@ import { EmptyBlocked } from '../components/EmptyStates'
 import { toast } from 'react-toastify'
 import { exportBlockedToCSV } from '../utils/csv'
 import { FiRefreshCw, FiDownload, FiArrowLeft, FiHome } from 'react-icons/fi'
-import { FiRefreshCw, FiDownload, FiArrowLeft, FiHome } from 'react-icons/fi'
 
 const ITEMS_PER_PAGE = 10
 

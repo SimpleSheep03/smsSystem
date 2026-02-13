@@ -6,7 +6,6 @@ html, body, #__next {
   height: 100%;
 }
 
-/* Bright / Dark theme using class strategy on <html> */
 html {
   @apply bg-gray-50 text-gray-900;
 }

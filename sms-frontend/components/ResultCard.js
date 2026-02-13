@@ -6,42 +6,35 @@ export default function ResultCard({ result }) {
   const isError = result.status >= 400 || result.status === 'ERR'
   const isSuccess = result.status === 200 && result.body?.status === 'SENT'
   const isWarning = result.status === 200 && result.body?.status === 'FAILED'
-  const isPending = result.status === 200 && result.body?.status === 'PENDING'
 
   const bgColor = isError ? 'bg-red-50 dark:bg-red-900/20' 
                 : isSuccess ? 'bg-green-50 dark:bg-green-900/20'
                 : isWarning ? 'bg-yellow-50 dark:bg-yellow-900/20'
-                : isPending ? 'bg-blue-50 dark:bg-blue-900/20'
                 : 'bg-gray-50 dark:bg-gray-900/20'
 
   const borderColor = isError ? 'border-red-200 dark:border-red-800'
                     : isSuccess ? 'border-green-200 dark:border-green-800'
                     : isWarning ? 'border-yellow-200 dark:border-yellow-800'
-                    : isPending ? 'border-blue-200 dark:border-blue-800'
                     : 'border-gray-200 dark:border-gray-800'
 
   const textColor = isError ? 'text-red-900 dark:text-red-100'
                : isSuccess ? 'text-green-900 dark:text-green-100'
                : isWarning ? 'text-yellow-900 dark:text-yellow-100'
-               : isPending ? 'text-blue-900 dark:text-blue-100'
                : 'text-gray-900 dark:text-gray-100'
 
   const headerColor = isError ? 'text-red-700 dark:text-red-300'
                     : isSuccess ? 'text-green-700 dark:text-green-300'
                     : isWarning ? 'text-yellow-700 dark:text-yellow-300'
-                    : isPending ? 'text-blue-700 dark:text-blue-300'
                     : 'text-gray-700 dark:text-gray-300'
 
   const IconComponent = isError ? FiAlertCircle 
                    : isSuccess ? FiCheckCircle
                    : isWarning ? FiAlertTriangle
-                   : isPending ? FiInfo
                    : FiInfo
 
   const statusText = isError ? 'Error'
                    : isSuccess ? 'Success'
                    : isWarning ? 'Warning'
-                   : isPending ? 'Pending'
                    : 'Info'
 
   return (
