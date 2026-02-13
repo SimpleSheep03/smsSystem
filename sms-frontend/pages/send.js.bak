@@ -1,0 +1,78 @@
+import { useState } from 'react'
+import NavBar from '../components/NavBar'
+import { useToast } from '../components/Toast'
+
+export default function Send(){
+  const [phone, setPhone] = useState('')
+  const [message, setMessage] = useState('')
+  const [result, setResult] = useState(null)
+  const toast = useToast()
+  const [loading, setLoading] = useState(false)
+
+  const send = async (e) => {
+    e.preventDefault()
+    setResult(null)
+    // basic client-side validation
+    if(!message || message.trim().length===0){
+      toast.show('Message body is required', {level:'error'})
+      return
+    }
+    if(!phone || phone.trim().length===0){
+      toast.show('Phone number is required', {level:'error'})
+      return
+    }
+
+    setLoading(true)
+    try{
+      const res = await fetch('/v1/sms/send', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ phoneNumber: phone, message })
+      })
+      const data = await res.json()
+      if(!res.ok){
+        toast.show((data && data.message) ? data.message : `Error ${res.status}`, {level:'error'})
+        return
+      }
+      toast.show('Message request sent: ' + (data.status || res.status))
+      setResult({status: res.status, body: data})
+    }catch(err){
+      toast.show(String(err), {level:'error'})
+      setResult({status: 'ERR', body: String(err)})
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div>
+      <NavBar />
+      <main className="max-w-2xl mx-auto p-6">
+        <h1 className="text-xl font-bold mb-4">Send SMS</h1>
+        <form onSubmit={send} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium">Phone Number</label>
+            <input value={phone} onChange={e=>setPhone(e.target.value)} className="mt-1 block w-full p-2 border rounded" placeholder="+14155552671" />
+          </div>
+          <div>
+            <label className="block text-sm font medium">Message</label>
+            <textarea value={message} onChange={e=>setMessage(e.target.value)} className="mt-1 block w-full p-2 border rounded" rows={4} />
+          </div>
+          <div>
+            <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50 flex items-center">
+              {loading && <span className="inline-block w-4 h-4 border-2 border-t-transparent rounded-full animate-spin mr-2" />}
+              Send
+            </button>
+          </div>
+        </form>
+
+        {result && (
+          <div className="mt-4 p-4 bg-white dark:bg-gray-800 rounded shadow">
+            <div className="font-semibold">Result: {result.status}</div>
+            <pre className="text-sm mt-2">{JSON.stringify(result.body, null, 2)}</pre>
+          </div>
+        )}
+      </main>
+    </div>
+  )
+}

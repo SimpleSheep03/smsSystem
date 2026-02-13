@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #__next {
+  height: 100%;
+}
+
+/* Bright / Dark theme using class strategy on <html> */
+html {
+  @apply bg-gray-50 text-gray-900;
+}
+
+html.dark {
+  @apply bg-gray-900 text-gray-100;
+}

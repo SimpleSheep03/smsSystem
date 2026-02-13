@@ -11,6 +11,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func GetUserMessages(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +27,9 @@ func GetUserMessages(w http.ResponseWriter, r *http.Request) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
-	cursor, err := db.Collection.Find(ctx, bson.M{"userId": userId})
+	// Sort by timestamp in descending order (newest first)
+	opts := options.Find().SetSort(bson.M{"timestamp": -1})
+	cursor, err := db.Collection.Find(ctx, bson.M{"userId": userId}, opts)
 	if err != nil {
 		log.Println("Database query error:", err)
 		http.Error(w, "Database error", http.StatusInternalServerError)

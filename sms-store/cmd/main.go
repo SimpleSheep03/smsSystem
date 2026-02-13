@@ -18,6 +18,9 @@ func main() {
 
 	r := mux.NewRouter()
 	r.HandleFunc("/v1/user/{userId}/messages", handlers.GetUserMessages).Methods("GET")
+	r.HandleFunc("/v1/admin/dbs", handlers.ListDatabases).Methods("GET")
+	r.HandleFunc("/v1/admin/dbs/{db}/collections", handlers.ListCollections).Methods("GET")
+	r.HandleFunc("/v1/admin/dbs/{db}/collections/{coll}/documents", handlers.FindDocuments).Methods("GET")
 
 	server := &http.Server{
 		Addr:         ":8081",

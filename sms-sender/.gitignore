@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/sms-frontend/node_modules/
+/sms-frontend/.next/
