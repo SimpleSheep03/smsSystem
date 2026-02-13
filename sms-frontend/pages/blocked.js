@@ -4,6 +4,8 @@ import NavBar from '../components/NavBar'
 import { EmptyBlocked } from '../components/EmptyStates'
 import { toast } from 'react-toastify'
 import { exportBlockedToCSV } from '../utils/csv'
+import { FiRefreshCw, FiDownload, FiArrowLeft, FiHome } from 'react-icons/fi'
+import { FiRefreshCw, FiDownload, FiArrowLeft, FiHome } from 'react-icons/fi'
 
 const ITEMS_PER_PAGE = 10
 
@@ -99,9 +101,13 @@ export default function Blocked(){
         {/* Breadcrumbs & Back Button */}
         <div className="flex justify-between items-center mb-6">
           <div>
-            <button onClick={() => router.back()} className="text-sm px-3 py-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition mb-2 inline-block">← Back</button>
+            <button onClick={() => router.back()} className="text-sm px-3 py-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition mb-2 inline-flex items-center gap-1">
+              <FiArrowLeft className="w-4 h-4" /> Back
+            </button>
             <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
-              <button onClick={() => router.push('/')} className="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</button>
+              <button onClick={() => router.push('/')} className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1">
+                <FiHome className="w-4 h-4" /> Home
+              </button>
               <span>/</span>
               <span>Blocked Numbers</span>
             </div>
@@ -118,10 +124,10 @@ export default function Blocked(){
           {list && list.length > 0 && (
             <>
               <button type="button" onClick={() => load()} className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 flex items-center" title="Refresh blocked list">
-                🔄
+                <FiRefreshCw className="w-4 h-4" />
               </button>
-              <button type="button" onClick={handleExport} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center">
-                📥 Export
+              <button type="button" onClick={handleExport} className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 flex items-center gap-1">
+                <FiDownload className="w-4 h-4" /> Export
               </button>
             </>
           )}

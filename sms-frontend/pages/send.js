@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import NavBar from '../components/NavBar'
 import ResultCard from '../components/ResultCard'
+import { FiArrowLeft, FiHome, FiSend, FiRefreshCw } from 'react-icons/fi'
 import { toast } from 'react-toastify'
 
 export default function Send(){
@@ -60,9 +61,13 @@ export default function Send(){
         {/* Breadcrumbs & Back Button */}
         <div className="flex justify-between items-center mb-6">
           <div>
-            <button onClick={() => router.back()} className="text-sm px-3 py-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition mb-2 inline-block">← Back</button>
+            <button onClick={() => router.back()} className="text-sm px-3 py-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition mb-2 inline-flex items-center gap-1">
+              <FiArrowLeft className="w-4 h-4" /> Back
+            </button>
             <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
-              <button onClick={() => router.push('/')} className="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</button>
+              <button onClick={() => router.push('/')} className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1">
+                <FiHome className="w-4 h-4" /> Home
+              </button>
               <span>/</span>
               <span>Send SMS</span>
             </div>

@@ -1,3 +1,5 @@
+import { FiCheckCircle, FiAlertCircle, FiAlertTriangle, FiInfo } from 'react-icons/fi'
+
 export default function ResultCard({ result }) {
   if (!result) return null
 
@@ -30,11 +32,11 @@ export default function ResultCard({ result }) {
                     : isPending ? 'text-blue-700 dark:text-blue-300'
                     : 'text-gray-700 dark:text-gray-300'
 
-  const statusIcon = isError ? '❌' 
-                   : isSuccess ? '✅'
-                   : isWarning ? '⚠️'
-                   : isPending ? '⏳'
-                   : 'ℹ️'
+  const IconComponent = isError ? FiAlertCircle 
+                   : isSuccess ? FiCheckCircle
+                   : isWarning ? FiAlertTriangle
+                   : isPending ? FiInfo
+                   : FiInfo
 
   const statusText = isError ? 'Error'
                    : isSuccess ? 'Success'
@@ -45,7 +47,7 @@ export default function ResultCard({ result }) {
   return (
     <div className={`mt-6 p-6 rounded-lg border-2 ${bgColor} ${borderColor} ${textColor}`}>
       <div className="flex items-center gap-3 mb-4">
-        <span className="text-3xl">{statusIcon}</span>
+        <IconComponent className="text-3xl" />
         <div>
           <h3 className={`text-lg font-bold ${headerColor}`}>{statusText}</h3>
           <p className="text-sm opacity-75">HTTP Status: {result.status}</p>

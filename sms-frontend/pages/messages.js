@@ -5,6 +5,7 @@ import MessageCard from '../components/MessageCard'
 import { EmptyMessages } from '../components/EmptyStates'
 import { toast } from 'react-toastify'
 import { exportMessagesToCSV } from '../utils/csv'
+import { FiRefreshCw, FiDownload, FiArrowLeft, FiHome } from 'react-icons/fi'
 
 const ITEMS_PER_PAGE = 5
 
@@ -69,9 +70,13 @@ export default function Messages(){
         {/* Breadcrumbs & Back Button */}
         <div className="flex justify-between items-center mb-6">
           <div>
-            <button onClick={() => router.back()} className="text-sm px-3 py-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition mb-2 inline-block">← Back</button>
+            <button onClick={() => router.back()} className="text-sm px-3 py-1 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition mb-2 inline-flex items-center gap-1">
+              <FiArrowLeft className="w-4 h-4" /> Back
+            </button>
             <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
-              <button onClick={() => router.push('/')} className="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</button>
+              <button onClick={() => router.push('/')} className="hover:text-blue-600 dark:hover:text-blue-400 transition flex items-center gap-1">
+                <FiHome className="w-4 h-4" /> Home
+              </button>
               <span>/</span>
               <span>View Messages</span>
             </div>
@@ -87,7 +92,7 @@ export default function Messages(){
           </button>
           {messages && messages.length > 0 && (
             <button type="button" onClick={() => fetchMessages()} className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 flex items-center" title="Refresh messages">
-              🔄
+              <FiRefreshCw className="w-4 h-4" />
             </button>
           )}
         </form>
@@ -101,8 +106,8 @@ export default function Messages(){
                 <div className="text-sm text-gray-600 dark:text-gray-400">
                   Showing {startIdx + 1} to {Math.min(endIdx, messages.length)} of {messages.length} messages
                 </div>
-                <button onClick={handleExport} className="text-sm px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition">
-                  📥 Export CSV
+                <button onClick={handleExport} className="text-sm px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition flex items-center gap-1">
+                  <FiDownload className="w-4 h-4" /> Export CSV
                 </button>
               </div>
               <div className="space-y-3">
