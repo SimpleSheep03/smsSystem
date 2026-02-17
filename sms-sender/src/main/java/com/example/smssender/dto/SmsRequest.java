@@ -6,11 +6,10 @@ import jakarta.validation.constraints.Size;
 
 public class SmsRequest {
 
-    // Keep userId for backward compatibility but not required from client
     private String userId;
 
     @NotBlank(message = "phoneNumber is required")
-    @Pattern(regexp = "^\\+?[1-9][0-9]{6,14}$", message = "Invalid phone number format")
+    @Pattern(regexp = "^\\+[1-9][0-9]{8,14}$", message = "Invalid phone number format")
     private String phoneNumber;
 
     @NotBlank(message = "message is required")

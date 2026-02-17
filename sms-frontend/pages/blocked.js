@@ -24,7 +24,7 @@ export default function Blocked(){
       const res = await fetch('/v1/blocked')
       const data = await res.json()
       if(!res.ok){
-        toast.error((data && data.message) ? data.message : `Error ${res.status}`)
+        toast.error((data && data.error) ? data.error : `Error ${res.status}`)
         setList([])
       } else {
         setList(data.blocked || [])

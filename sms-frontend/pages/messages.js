@@ -30,7 +30,7 @@ export default function Messages(){
       const res = await fetch(`/v1/user/${encodeURIComponent(phone)}/messages`)
       const data = await res.json()
       if(!res.ok){
-        toast.error((data && data.message) ? data.message : `Error ${res.status}`)
+        toast.error((data && data.error) ? data.error : `Error ${res.status}`)
         setMessages(null)
       } else {
         // Sort messages by timestamp descending (newest first)
